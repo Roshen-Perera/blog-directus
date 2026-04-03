@@ -7,9 +7,6 @@ type PostCardProps = {
 
 export default function PostCard({ post }: PostCardProps) {
   const preview = post.content.slice(0, 140);
-  const publishedText = post.publishedAt
-    ? new Date(post.publishedAt).toLocaleDateString()
-    : "Unpublished";
 
   return (
     <article className="group overflow-hidden rounded-2xl border border-black/5 bg-surface-strong shadow-[0_16px_34px_-26px_rgba(21,21,21,.62)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_45px_-22px_rgba(16,39,36,.42)]">
@@ -33,11 +30,10 @@ export default function PostCard({ post }: PostCardProps) {
       )}
 
       <div className="space-y-4 p-5">
-        <div className="flex items-center justify-between gap-3 text-xs">
+        <div className="text-xs">
           <span className="truncate rounded-full bg-[#ecf6f4] px-3 py-1 font-semibold uppercase tracking-[0.12em] text-accent">
             {post.category}
           </span>
-          <span className="text-muted">{publishedText}</span>
         </div>
 
         <h2 className="line-clamp-2 text-xl font-extrabold tracking-tight text-foreground">

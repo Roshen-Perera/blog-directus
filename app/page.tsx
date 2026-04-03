@@ -3,7 +3,6 @@ import PostCard from "@/components/PostCard";
 
 export default async function Page() {
   const posts = await getPosts();
-  const publishedCount = posts.filter((post) => post.publishedAt).length;
 
   return (
     <main className="page-shell grain-overlay px-4 py-8 sm:px-6 lg:px-10">
@@ -23,14 +22,10 @@ export default async function Page() {
             </p>
           </div>
 
-          <div className="rise-fade grid grid-cols-2 gap-3 text-sm sm:w-72">
+          <div className="rise-fade grid grid-cols-1 gap-3 text-sm sm:w-36">
             <div className="rounded-2xl border border-black/5 bg-surface px-4 py-3">
               <p className="text-muted">Posts</p>
               <p className="text-2xl font-extrabold">{posts.length}</p>
-            </div>
-            <div className="rounded-2xl border border-black/5 bg-surface px-4 py-3">
-              <p className="text-muted">Published</p>
-              <p className="text-2xl font-extrabold">{publishedCount}</p>
             </div>
           </div>
         </div>

@@ -5,7 +5,6 @@ type DirectusPostRecord = {
     content?: string | null;
     category?: { name?: string | null } | null;
     image?: string | { id?: string | null } | null;
-    published_at?: string | null;
 };
 
 export type Post = {
@@ -14,7 +13,6 @@ export type Post = {
     content: string;
     category: string;
     image: string | null;
-    publishedAt: string | null;
 };
 
 export const getPosts = async (): Promise<Post[]> => {
@@ -42,6 +40,5 @@ export const getPosts = async (): Promise<Post[]> => {
                 : post.image?.id
                     ? `http://localhost:8055/assets/${post.image.id}`
                     : null,
-        publishedAt: post.published_at || null,
     }));
 };
