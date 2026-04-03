@@ -40,7 +40,9 @@ export default function PostCard({ post }: PostCardProps) {
           <span className="text-muted">{publishedText}</span>
         </div>
 
-        <h2 className="line-clamp-2 text-xl font-extrabold tracking-tight text-foreground">{post.title}</h2>
+        <h2 className="line-clamp-2 text-xl font-extrabold tracking-tight text-foreground">
+          {post.title}
+        </h2>
 
         <p className="text-sm leading-relaxed text-muted">{preview}...</p>
       </div>
