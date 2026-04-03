@@ -22,7 +22,7 @@ export default function PostCard({ post }: PostCardProps) {
       )}
 
       {!post.image && (
-        <div className="flex h-52 items-end bg-gradient-to-br from-accent-soft via-[#f7f3dd] to-[#ffd7b8] p-4">
+        <div className="flex h-52 items-end bg-linear-to-br from-accent-soft via-[#f7f3dd] to-[#ffd7b8] p-4">
           <p className="rounded-lg bg-white/80 px-2 py-1 text-sm font-semibold text-foreground">
             {post.title}
           </p>
