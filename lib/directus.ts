@@ -4,9 +4,15 @@ export const getPosts = async () => {
         { cache: "no-store" }
     );
 
-    const json = await res.json();
+    if (!res.ok) {
+        console.error("Failed to fetch posts from Directus", res.status, res.statusText);
+        return [];
+    }
 
-    return json.data.map((post: any) => ({
+    const json = await res.json();
+    const items = Array.isArray(json?.data) ? json.data : [];
+
+    return items.map((post: any) => ({
         id: post.id,
         title: post.title,
         content: post.content,
