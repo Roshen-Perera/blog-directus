@@ -17,6 +17,7 @@ export default function PostCard({ post }: PostCardProps) {
           width={400}
           height={200}
           className="w-full h-48 object-cover"
+          unoptimized
         />
       )}
 
@@ -26,12 +27,6 @@ export default function PostCard({ post }: PostCardProps) {
         <p className="text-gray-600 mb-3">{preview}...</p>
 
         <p className="text-sm text-gray-500">Category: {post.category}</p>
-
-        <p className="text-sm text-gray-500">
-          {post.publishedAt
-            ? new Date(post.publishedAt).toLocaleDateString()
-            : "Unpublished"}
-        </p>
       </div>
     </div>
   );
