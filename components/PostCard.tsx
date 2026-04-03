@@ -1,6 +1,13 @@
 import Image from "next/image";
+import type { Post } from "@/lib/directus";
 
-export default function PostCard({ post }: any) {
+type PostCardProps = {
+  post: Post;
+};
+
+export default function PostCard({ post }: PostCardProps) {
+  const preview = post.content.slice(0, 100);
+
   return (
     <div className="bg-white shadow-md rounded-lg overflow-hidden">
       {post.image && (
@@ -16,12 +23,14 @@ export default function PostCard({ post }: any) {
       <div className="p-4">
         <h2 className="text-xl font-bold mb-2">{post.title}</h2>
 
-        <p className="text-gray-600 mb-3">{post.content?.slice(0, 100)}...</p>
+        <p className="text-gray-600 mb-3">{preview}...</p>
 
         <p className="text-sm text-gray-500">Category: {post.category}</p>
 
         <p className="text-sm text-gray-500">
-          {new Date(post.publishedAt).toLocaleDateString()}
+          {post.publishedAt
+            ? new Date(post.publishedAt).toLocaleDateString()
+            : "Unpublished"}
         </p>
       </div>
     </div>
