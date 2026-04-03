@@ -1,26 +1,65 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f6f8ef;
+  --foreground: #1a1f1a;
+  --surface: #fefcf7;
+  --surface-strong: #ffffff;
+  --muted: #5e665d;
+  --accent: #0f766e;
+  --accent-soft: #99f6e4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+  background-image:
+    radial-gradient(circle at 14% 12%, color-mix(in oklab, var(--accent-soft) 70%, #ffffff 30%) 0, transparent 44%),
+    radial-gradient(circle at 92% 8%, color-mix(in oklab, #fca5a5 55%, #ffffff 45%) 0, transparent 37%),
+    linear-gradient(180deg, #fbfdf6 0%, #f7f9f0 48%, #f4f6ea 100%);
+  min-height: 100vh;
+}
+
+.page-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.grain-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.08) 1px, transparent 0);
+  background-size: 4px 4px;
+}
+
+@keyframes riseFade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rise-fade {
+  animation: riseFade 520ms ease-out both;
 }
