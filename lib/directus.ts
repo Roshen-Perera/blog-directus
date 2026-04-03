@@ -1,9 +1,10 @@
 type DirectusPostRecord = {
     id: number | string;
     title?: string | null;
+    Title?: string | null;
     content?: string | null;
     category?: { name?: string | null } | null;
-    image?: string | null;
+    image?: string | { id?: string | null } | null;
     published_at?: string | null;
 };
 
@@ -32,12 +33,15 @@ export const getPosts = async (): Promise<Post[]> => {
 
     return items.map((post) => ({
         id: post.id,
-        title: post.title || "Untitled",
+        title: post.title || post.Title || "Untitled",
         content: post.content || "",
         category: post.category?.name || "No Category",
-        image: post.image
-            ? `http://localhost:8055/assets/${post.image}`
-            : null,
+        image:
+            typeof post.image === "string"
+                ? `http://localhost:8055/assets/${post.image}`
+                : post.image?.id
+                    ? `http://localhost:8055/assets/${post.image.id}`
+                    : null,
         publishedAt: post.published_at || null,
     }));
 };
