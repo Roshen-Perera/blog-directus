@@ -15,8 +15,9 @@ export type Post = {
 };
 
 export const getPosts = async (): Promise<Post[]> => {
+    const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL || "http://localhost:8055";
     const res = await fetch(
-        "http://localhost:8055/items/posts?fields=*,category.*,image.*",
+        `${directusUrl}/items/posts?fields=*,category.*,image.*`,
         { cache: "no-store" }
     );
 
@@ -35,9 +36,9 @@ export const getPosts = async (): Promise<Post[]> => {
         category: post.category?.name || "No Category",
         image:
             typeof post.image === "string"
-                ? `http://localhost:8055/assets/${post.image}`
+                ? `${directusUrl}/assets/${post.image}`
                 : post.image?.id
-                    ? `http://localhost:8055/assets/${post.image.id}`
+                    ? `${directusUrl}/assets/${post.image.id}`
                     : null,
     }));
 };
