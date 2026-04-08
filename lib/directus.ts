@@ -1,6 +1,7 @@
 type DirectusPostRecord = {
     id: number | string;
     title?: string | null;
+    Title?: string | null; // In case the field is named "Title" instead of "title"
     content?: string | null;
     category?: { name?: string | null } | null;
     image?: string | { id?: string | null } | null;
@@ -31,7 +32,7 @@ export const getPosts = async (): Promise<Post[]> => {
 
     return items.map((post) => ({
         id: post.id,
-        title: post.title || "Untitled",
+        title: post.title || post.Title || "Untitled",
         content: post.content || "",
         category: post.category?.name || "No Category",
         image:
